@@ -16,42 +16,46 @@ Algorithm:
 Program:
 
 ```
-struct Node{
-    char data; 
-    struct Node *next;
+struct Node
+{
+    struct Node *next; 
+    char data;
 }*head;
-
 void search(char data)
 {
-    char item=data;
-    int i=0,f=0;
-    struct Node*temp;
-    temp=head;
-    if(temp==NULL){
-        printf("Item not found");
+    struct Node *ptr;
+    char item=data; 
+    int i=0,flag;
+    ptr = head; 
+    if(ptr == NULL)
+    {
+        printf("Empty List\n");  
     }
-    else{
-        while(temp!=NULL){
-            if(temp->data==item){
-                printf("item %c found at location %d",item,i+1);
-              
-              f=1;
+    else
+    {
+        while (ptr!=NULL)
+        {
+            if(ptr->data == item)
+            {
+                printf("item %c found at location %d ",item,i+1); 
+                flag=0;    
             }
             i++;
-            temp=temp->next;      
-        }        
-    }
-    if(f==0)
-    {
-                printf("Item not found");
-    }
+            ptr = ptr -> next;   
+        }
+        if(flag!=0)
+        {
+            printf("Item not found\n");
+        }
+}
 }
 ```
 
 Output:
 
 
-![444626597-741bc0f4-6c45-4fb7-9a98-f370ad66cae6](https://github.com/user-attachments/assets/d775805a-b0ab-473c-af6a-d8b0afd33883)
+![445004914-97cea2ec-082b-4e3e-b38b-14337e48ef24](https://github.com/user-attachments/assets/e1919beb-2105-4bc6-8f6f-48b4554c834b)
+
 
 
 
@@ -72,34 +76,36 @@ Algorithm:
 Program:
 
 ```
-struct Node{
-    char data; 
+struct Node{ 
+    char data;
     struct Node *next;
 }*head;
-
 void insert(char data)
 {
-    struct Node *newnode,*temp;
-    newnode=(struct Node*)malloc(sizeof(struct Node));
-    newnode->data=data;
-    newnode->next=NULL;
-    if(head==NULL){
-        head=newnode;
-    }
-    else{
-        temp=head;
-        while(temp->next!=NULL){
-            temp=temp->next;
-        }
-        temp->next=newnode;
-    }
-    
+    struct Node *n=(struct Node*)malloc(sizeof(struct Node));
+    struct Node *temp;
+    if(head==NULL)
+    {
+        head=n;
+        n->data=data; 
+        n->next=NULL; 
+        temp=head; 
+        return;
+}
+while(temp->next!=NULL)
+{
+    temp=temp->next;
+}
+n->data=data; 
+n->next=NULL;
+temp->next=n;
 }
 ```
 
 Output:
 
-![444626683-dee050af-ed7d-4685-9e51-cb8ef4aa6afa](https://github.com/user-attachments/assets/4762ec33-e55a-416e-b7d2-238102048edf)
+![445005445-83cec064-d01a-46ee-8757-5a7ccf50202e](https://github.com/user-attachments/assets/346afcc3-cb95-4fca-8e00-715a07b3d6e8)
+
 
 
  
@@ -124,25 +130,27 @@ Program:
 ```
 struct Node
 {
-    struct Node *prev;
-    struct Node *next;
+    struct Node *prev; 
+    struct Node *next; 
     int data;
 }*head;
-
 void display()
 {
-    struct Node*temp;
-    temp=head;
-    while(temp!=NULL){
-        printf("%d\n",temp->data);
+    struct Node *temp; 
+    temp=head; 
+    while(temp!=0)
+    {
+        printf("%d ",temp->data); 
         temp=temp->next;
-    }        
+        
+    }
 }
 ```
 
 Output:
 
-![444626788-1dc74b3e-0730-4b26-8138-25b02f1c60e8](https://github.com/user-attachments/assets/1d9ddc95-5701-4d75-a90a-be687b07de62)
+![445005838-c4235ab6-943b-4e85-a317-c539a538d628](https://github.com/user-attachments/assets/2ce4b4ed-5586-4288-a2c9-468f67e1a6dc)
+
 
 
 
@@ -168,35 +176,40 @@ Program:
 ```
 struct Node
 {
-    float data;
     struct Node *prev;
     struct Node *next;
+    float data;
 }*head;
-
 void insert(float data)
 {
-    struct Node *temp,*newnode;
-    newnode=(struct Node*)malloc(sizeof(struct Node));
-    newnode->data=data;
-    newnode->next=NULL;
-    newnode->prev=NULL;
-    if(head==NULL){
-        head=newnode;
+    struct Node *n=(struct Node*)malloc(sizeof(struct Node));
+    struct Node *temp;
+if(head==NULL)
+{
+    head=n;
+    n->data=data;
+    n->next=NULL; 
+    n->prev=NULL; 
+    temp=head;
+}
+else
+{
+    while(temp->next!=NULL)
+    {
+        temp=temp->next;        
     }
-    else{
-        temp=head;
-        while(temp->next!=NULL){
-            temp=temp->next;
-        }
-        temp->next=newnode;
-        newnode->prev=temp;
-    }        
+    n->data=data; 
+    n->next=NULL; 
+    n->prev=temp; 
+    temp->next=n;  
+}
 }
 ```
 
 Output:
 
-![444626905-51d790d6-03b7-413e-a027-7c7e78dd26c4](https://github.com/user-attachments/assets/a24719b4-8a7a-4993-aa4e-f2a456e6ff90)
+![445006218-98109e34-bfa4-4a6f-bdea-f3102c26270f](https://github.com/user-attachments/assets/0a86fbd3-4511-42bf-b4b5-1811c8a475c9)
+
 
 
 
@@ -236,22 +249,25 @@ o	If the element is not found in any node, print a message indicating the elemen
 Program:
 
 ```
-struct Node
-{
-    int data; 
+struct Node{
+    char data; 
     struct Node *next;
 }*head;
 void delete()
 {
-    struct Node *ptr;
-    if(head == NULL)
-    {
+    if(head==NULL){
         printf("List is empty\n");
+        return;
     }
-    else
-    {
-        ptr = head;
-        head = ptr->next;
+    else if(head->next==NULL){
+        head=NULL;
+        free(head);
+        printf("Node deleted from the begining ...\n");
+    }
+    else{
+        struct Node *ptr;
+        ptr=head;
+        head=head->next;
         free(ptr);
         printf("Node deleted from the begining ...\n");
     }
@@ -261,8 +277,8 @@ void delete()
 Output:
 
 
-![444627008-44a0f39e-01d6-4bbb-b47c-55514fdafe54](https://github.com/user-attachments/assets/a79ed7ae-77fa-4f4f-9f6f-3e251e549670)
 
+![445006698-d22c798d-c0be-4ecd-b0b8-d1488b16e051](https://github.com/user-attachments/assets/f19cb04f-c887-46ad-b9d6-cc33b1138042)
 
 
 
