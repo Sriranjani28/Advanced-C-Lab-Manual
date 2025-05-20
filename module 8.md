@@ -23,51 +23,47 @@ Algorithm:
 Program:
 
 ```
-#include <stdio.h>
-
-int main() {
-int n;
-
-printf("Enter an integer: ");
-if (scanf("%d", &n) != 1) {
-    printf("Invalid input\n");
-    return 1;
-}
-
-
-switch(n) {
+#include<stdio.h> 
+#include<math.h>
+int main()
+{
+     int n;
+     scanf("%d",&n);
+     if(n>=1 && n<=pow(4,3))
+     {
+     switch(n)
+     {
+     case 5:
+     printf("seventy one");
+     break;
+     case 6:
+     printf("seventy two");
+     break;
+     case 13:
+     printf("seventy three");
+     break;
+     case 14:
+     printf("seventy four");
+     break;
+     case 15:
+     printf("seventy five");
+     break;
+    case 16:
+    printf("seventy six");
+    break;
     case 5:
-        printf("seventy one\n");
-        break;
+    printf("seventy seven");
+    break;
     case 6:
-        printf("seventy two\n");
-        break;
+    printf("seventy eight");
+    break;
     case 13:
-        printf("seventy three\n");
-        break;
-    case 7:
-        printf("seventy four\n");
-        break;
-    case 8:
-        printf("seventy five\n");
-        break;
-    case 9:
-        printf("seventy six\n");
-        break;
-    case 10:
-        printf("seventy seven\n");
-        break;
-    case 11:
-        printf("seventy eight\n");
-        break;
-    case 12:
-        printf("seventy nine\n");
-        break;
+    printf("seventy nine");
+    break;
     default:
-        printf("greater than 13\n");
+    printf("Greater than 13");
 }
-return 0;
-}
+
 ```
 
 
@@ -75,7 +71,7 @@ return 0;
 Output:
 
 
-![444628948-4dfa542d-2a99-4542-a91e-50306c166896](https://github.com/user-attachments/assets/339fdcde-0052-4b1c-a8c5-35b8b0032187)
+![444985529-918ecb52-009f-4f75-8d29-131267ae2054](https://github.com/user-attachments/assets/d9c05602-94eb-4ceb-8a98-2599decf42cb)
 
 
 
@@ -102,26 +98,25 @@ Algorithm:
 Program:
 
 ```
-#include <stdio.h>
-#include <string.h>
-
-int main() {
- char a[50]; int i, h, c;
- printf("Enter a string containing digits: ");
- scanf("%s", a);
-
- for (h = 0; h < 10; h++) {
-     c = 0; 
-     for (i = 0; i < strlen(a); i++) {
-         if (a[i] == (h + '0')) {
-             c++;
+#include<string.h>
+int main()
+{
+     char a[50];
+     scanf("%s",a);
+     int l=strlen(a);
+     char h='0';
+     for(int i=0;i<4;i++)
+     {
+          int c=0;
+          for(int j=0;j<l;j++)
+          {
+               if(a[j]==h)
+               {
+                      c+=1;
          }
      }
-     printf("%d ", c);
- }
-
- printf("\n");
- return 0;
+    printf("%d ",c);h++;
+    }
 }
 ```
 
@@ -131,8 +126,9 @@ int main() {
 Output:
 
 
+![444986258-d05a6c13-5e29-4e2d-a84e-0e293dd150f0](https://github.com/user-attachments/assets/34106689-d1c5-4f98-9334-05061352199b)
 
-![444629034-1afc61f8-b0fc-4287-94c7-1ac33a420dd6](https://github.com/user-attachments/assets/65de1cb1-492f-402e-bbab-7797b436185a)
+
 
 
 
@@ -163,52 +159,47 @@ Free the memory allocated for each string in s Free the memory allocated for s
 Program:
 
 ```
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 
-void swap(char *x, char *y) { char temp = *x; *x = *y; *y = temp; }
-
-int cmpfunc(const void *a, const void b) { return ((char *)a - *(char *)b); }
-
-void reverse(char *s, int i, int j) { while (i < j) { swap(&s[i], &s[j]); i++; j--; } }
-
-int next_permutation(char *s, int len) { int i = len - 2; while (i >= 0 && s[i] >= s[i + 1]) i--; if (i < 0) return 0;
-
-int j = len - 1;
-while (s[j] <= s[i])
-    j--;
-
-swap(&s[i], &s[j]);
-reverse(s, i + 1, len - 1);
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+int next_per(int n, char **s)
+{
+for(int i = n - 1 ; i > 0 ; i--)if(strcmp(s[i],s[i-1]) > 0)
+{
+int j=i+1;
+for(;j<n;j++) if (strcmp(s[j],s[i-1])<=0) break; char *t=s[i-1];
+s[i-1]=s[j-1];
+s[j-1]=t;
+for(;i<n-1;i++,n--)
+{
+t=s[i]; s[i]=s[n-1]; s[n-1]=t;
+}
 return 1;
 }
-
-int main() { char *s; int len;
-
-// Step 3: Memory allocation
-s = (char *)malloc(100 * sizeof(char));
-if (s == NULL) {
-    printf("Memory allocation failed.\n");
-    return 1;
+for(int i=0;i<n-1;i++,n--)
+{
+char *t=s[i]; s[i]=s[n-1]; s[n-1]=t;
 }
-
-printf("Enter a string: ");
-scanf("%s", s);
-
-len = strlen(s);
-
-qsort(s, len, sizeof(char), cmpfunc);
-
-printf("%s\n", s);
-
-while (next_permutation(s, len)) {
-    printf("%s\n", s);
-}
-
-free(s);
-
 return 0;
+}
+int main()
+{
+char **s; int n;
+scanf("%d",&n); s=calloc(n,sizeof(char*)); for(int i=0;i<n;i++)
+{
+s[i]=calloc(n,sizeof(char*)*5); scanf("%s",s[i]);
+}
+do
+{
+for(int i=0;i<n;i++) printf("%s%c",s[i],i==n-1?'\n':' ');
+}
+while(next_per(n,s));
+ 
+{
+for(int i=0;i<n;i++) free (s[i]);
+free(s); return 0;
+}
 }
 ```
 
@@ -218,7 +209,8 @@ return 0;
 Output:
 
 
-![444629384-910459a3-a227-4d89-92db-7996f4204510](https://github.com/user-attachments/assets/4401ac5c-1da3-4ac8-b86d-a9b12ef76f0a)
+
+![444986710-22c998be-d3d0-46e2-ab96-ed1ae6d1663e](https://github.com/user-attachments/assets/ab9b5e8e-f3cb-4cc8-a98a-4e12aed2eab9)
 
 
 
@@ -247,27 +239,26 @@ Algorithm:
 Program:
 
 ```
-#include <stdio.h>
-
-int main() { int n, i, j; printf("Enter the value of n: ");
-scanf("%d", &n);
-
-int len = n * 2 - 1;  
-for (i = 0; i < len; i++) {
-    for (j = 0; j < len; j++) {
-        int min = i < j ? i : j;
-        if (min > len - 1 - i)
-            min = len - 1 - i;
-        if (min > len - 1 - j)
-            min = len - 1 - j;
-
-        printf("%d ", n - min);
+ #include<stdio.h> 
+ int main()
+ {
+     int n,i,j,min; 
+     scanf("%d",&n);
+     int len=n*2-1; 
+     for (i=0;i<len;i++)
+     {
+        for (j=0;j<len;j++)
+        {
+          min=i<j?i:j;
+          min=min<len-i-1?min:len-1-i; 
+          min=min<len-j-1?min:len-1-j; 
+          printf("%d ",n-min);
+        }
+        printf("\n");
     }
-    printf("\n");
-}
+    return 0;
+ }
 
-return 0;
-}
 ```
 
 
@@ -276,8 +267,10 @@ return 0;
 Output:
 
 
+![444987033-957f683a-fcf9-4140-8d10-e3661896d682](https://github.com/user-attachments/assets/eb05de35-72e9-439f-8fb7-5d7bcc86c7b0)
 
-![444629538-a8030489-56c8-451a-9b34-4479aa1e18a4](https://github.com/user-attachments/assets/37e9ce0d-6ea7-42fd-a06f-3e61680bb8be)
+
+
 
 
 
@@ -310,16 +303,17 @@ Program:
 
 ```
 #include <stdio.h>
-
-int square() {
-     int num;
-     printf("Enter a number: ");
-     scanf("%d", &num);
-     return num * num; }
-
-int main() {
-      int result = square(); printf("Square of the number is: %d\n", result);
-      return 0;
+void square();
+int main(){
+    
+    square();
+    return 0;
+}
+void square(){
+    int a;
+    scanf("%d",&a);
+    float ans = a*a;
+    printf("The square of %d is : %.2f",a,ans);
 }
 ```
 
@@ -329,7 +323,8 @@ int main() {
 Output:
 
 
-![444629822-941718ca-ac6d-4727-99a2-5fbe8ecae89e](https://github.com/user-attachments/assets/6a97f999-0d7e-4f26-998a-f8d849ddc152)
+![444987369-2bc1a0a3-65f6-460d-b05f-72b3e95474c5](https://github.com/user-attachments/assets/9e85c035-7653-4db8-b689-a07d24dd9221)
+
 
 
 
