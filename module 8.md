@@ -48,20 +48,20 @@ int main()
      case 15:
      printf("seventy five");
      break;
-    case 16:
-    printf("seventy six");
-    break;
-    case 5:
-    printf("seventy seven");
-    break;
-    case 6:
-    printf("seventy eight");
-    break;
-    case 13:
-    printf("seventy nine");
-    break;
-    default:
-    printf("Greater than 13");
+     case 16:
+     printf("seventy six");
+     break;
+     case 5:
+     printf("seventy seven");
+     break;
+     case 6:
+     printf("seventy eight");
+     break;
+     case 13:
+     printf("seventy nine");
+     break;
+     default:
+     printf("Greater than 13");
 }
 
 ```
