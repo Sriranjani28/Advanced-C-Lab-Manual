@@ -18,41 +18,20 @@ Algorithm:
 Program:
 
 ```
-#include <stdio.h>
-#define SIZE 5
-
-int stack[SIZE], top = -1;
-
-void push(int value) {
-    if (top == SIZE - 1)
-        printf("Stack Overflow\n");
-    else
-        stack[++top] = value;
+int stack[40],top,i;
+ void display()
+{
+    for(i=top;i>=0;i--)
+       {
+           printf("%d\n",stack[i]);
+       }
 }
-
-void display() {
-    if (top == -1)
-        printf("Stack is empty\n");
-    else {
-        printf("Stack elements:\n");
-        for (int i = top; i >= 0; i--)
-            printf("%d\n", stack[i]);
-    }
-}
-
-int main() {
-    push(10);
-    push(20);
-    push(30);
-    display();
-    return 0;
-}
-
 ```
 
 Output:
 
-![444630462-d812901e-bdd0-4712-81d3-4371eba3030f](https://github.com/user-attachments/assets/43aed5a1-0d82-4a5d-930a-75e962d89f58)
+
+![444992053-c2c68be5-be5e-4a7f-b9be-d877c91b52e4](https://github.com/user-attachments/assets/0edf43c8-b2ce-4537-9296-cad731114ad9)
 
 
 
@@ -75,33 +54,27 @@ Algorithm:
 Program:
 
 ```
-#include <stdio.h>
-#define SIZE 5
-
-int stack[SIZE], top = -1;
-
-void push(int value) {
-    if (top == SIZE - 1)
-        printf("Stack Overflow\n");
-    else {
-        stack[++top] = value;
-        printf("%d pushed into stack\n", value);
+int size=3,top=1;
+float stack[40];
+void push (float data)
+{
+    if (top==size-1 )
+    {
+        printf("stack is full\n");      
+    }
+    else
+    {
+        top ++;
+        stack[top] = data;
     }
 }
-
-int main() {
-    push(5);
-    push(10);
-    push(15);
-    return 0;
-}
-
 ```
 
 Output:
 
+![444992349-625164f6-020e-4778-b142-06c921751329](https://github.com/user-attachments/assets/abebfbf2-5663-439a-b7f3-e986f2fa6c27)
 
-![444630531-cccc4e8d-5319-4266-8fe3-4c545a57225a](https://github.com/user-attachments/assets/3ddfa665-a1d8-4ce9-898f-707079bd800e)
+
 
 
 
@@ -125,43 +98,27 @@ Algorithm:
 Program:
 
 ```
-#include <stdio.h>
-#define SIZE 5
-
-int queue[SIZE], front = -1, rear = -1;
-
-void enqueue(int value) {
-    if (rear == SIZE - 1)
-        printf("Queue Overflow\n");
-    else {
-        if (front == -1) front = 0;
-        queue[++rear] = value;
+int queue[50], rear, front,i;
+void display()
+{
+    if(front==-1)
+    {
+        printf("No elements to display");     
+    }
+    else
+    {
+        for(i=front;i<=rear;i++)
+        {
+            printf("%d ",queue[i]);    
+        }  
     }
 }
-
-void display() {
-    if (front == -1 || front > rear)
-        printf("Queue is empty\n");
-    else {
-        printf("Queue elements:\n");
-        for (int i = front; i <= rear; i++)
-            printf("%d\n", queue[i]);
-    }
-}
-
-int main() {
-    enqueue(10);
-    enqueue(20);
-    enqueue(30);
-    display();
-    return 0;
-}
-
 ```
 
 Output:
 
-![444630597-c2330b61-2c17-4229-a7b4-817c5c8dbc3f](https://github.com/user-attachments/assets/6e711ef6-c66a-46ec-af76-c818c6933cb5)
+
+![444992712-29451b63-15cc-46f0-8e15-dae4dedda6f1](https://github.com/user-attachments/assets/e3df35e4-0b23-40bb-a6a6-7179068a26fe)
 
 
 
@@ -183,32 +140,27 @@ Algorithm:
 
 Program:
 ```
-#include <stdio.h>
-#define SIZE 5
-
-int queue[SIZE], front = -1, rear = -1;
-
-void enqueue(int value) {
-    if (rear == SIZE - 1)
-        printf("Queue Overflow\n");
-    else {
-        if (front == -1) front = 0;
-        queue[++rear] = value;
-        printf("%d inserted into queue\n", value);
+int size=4, rear=-1, front=-1; 
+float queue[50];
+void enqueue(float data)
+{
+    if(rear<size)
+    {
+        if(front==-1)
+        {
+            front=0;
+        }
+        rear=rear+1;
+        queue[rear]=data;
+        
     }
-}
-
-int main() {
-    enqueue(5);
-    enqueue(10);
-    enqueue(15);
-    return 0;
 }
 ```
 
 Output:
 
-![444630656-fe2f60ef-e578-4b39-a65f-9fbbfa5b821b](https://github.com/user-attachments/assets/5569e016-f328-4de5-826d-07ce31007b2b)
+![444993060-1b2869e6-e871-4d46-94de-4795f57e6d12](https://github.com/user-attachments/assets/c71abab2-43c5-47b1-a0e1-a85492a0dca2)
+
 
 
 Result:
@@ -241,41 +193,23 @@ o	After deletion, check if the front pointer has passed the rear pointer (front 
 Program:
 
 ```
-#include <stdio.h>
-#define SIZE 5
-
-int queue[SIZE], front = -1, rear = -1;
-
-void enqueue(int value) {
-    if (rear == SIZE - 1)
-        printf("Queue Overflow\n");
-    else {
-        if (front == -1) front = 0;
-        queue[++rear] = value;
+int front, rear;
+void dequeue()
+{
+    if(front==-1&&rear==-1)
+    printf("Queue Underflow.");
+    else if(front==rear)
+    front=rear=-1;
+    else{
+        front=front+1;
     }
 }
-
-void dequeue() {
-    if (front == -1 || front > rear)
-        printf("Queue Underflow\n");
-    else
-        printf("%d deleted from queue\n", queue[front++]);
-}
-
-int main() {
-    enqueue(10);
-    enqueue(20);
-    enqueue(30);
-    dequeue();
-    dequeue();
-    return 0;
-}
-
 ```
 
 Output:
 
-![444630763-cb4fcb2a-3078-4ca6-ace8-686f79547efb](https://github.com/user-attachments/assets/4cca48f3-b943-4549-8f62-075d56ebbd2c)
+
+![444993341-77c6929d-a47e-4d46-bee8-3995d61bad65](https://github.com/user-attachments/assets/8ca23bf2-8cfb-4b28-bcfd-fc4fa2691060)
 
 
 
