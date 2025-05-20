@@ -17,37 +17,39 @@ Algorithm:
 Program:
 
 ```
-#include <stdio.h>
-
-int max_of_four(int a, int b, int c, int d) {
-    if (a >= b && a >= c && a >= d) {
-        return a;
-    } else if (b >= a && b >= c && b >= d) {
-        return b;
-    } else if (c >= a && c >= b && c >= d) {
-        return c;
-    } else {
-        return d;
-    }
+#include<stdio.h>
+int max_of_four(int a,int b,int c,int d)
+{
+     if(a>b && a>c && a>d)
+     {
+          return a;
+     }
+     else if(b>a && b>c && b>d)
+     {
+           return b;
+     }
+     else if(c>a && c>b && c>d)
+     {
+           return c;
+     }
+     else
+     {
+           return d;
+     }
 }
-
-int main() {
-    int n1, n2, n3, n4, greater;
-
-    scanf("%d %d %d %d", &n1, &n2, &n3, &n4);
-
-    greater = max_of_four(n1, n2, n3, n4);
-
-    printf("%d\n", greater);
-
-    return 0;
+int main()
+{
+     int n1,n2,n3,n4,greater; 
+     scanf("%d%d%d%d",&n1,&n2,&n3,&n4); 
+     greater=max_of_four(n1,n2,n3,n4); 
+     printf("%d",greater);
 }
-
 ```
 
 Output:
 
-![444627306-65027498-72ae-43b1-8efe-0de67bf9d3a2](https://github.com/user-attachments/assets/760b0a94-eab9-4d34-ba19-329516ea162a)
+![445010189-a7b9e3f7-aa17-4c8b-8b93-2e18d92197ef](https://github.com/user-attachments/assets/e80e18d4-e41c-4721-96f9-8c792e8f843d)
+
 
 
 Result:
@@ -72,51 +74,41 @@ Algorithm:
 Program:
 
 ```
-#include <stdio.h>
-
-void calculate_the_max(int n, int k) {
-    int a = 0, o = 0, x = 0;
-
-    for (int i = 1; i <= n; i++) {
-        for (int j = i + 1; j <= n; j++) {
-            int and_val = i & j;
-            int or_val = i | j;
-            int xor_val = i ^ j;
-
-            if (and_val < k && and_val > a) {
-                a = and_val;
-            }
-
-            if (or_val < k && or_val > o) {
-                o = or_val;
-            }
-
-            if (xor_val < k && xor_val > x) {
-                x = xor_val;
+void calculate_the_max(int n,int k)
+{
+       int a=0,o=0,x=0; 
+       for(int i=1;i<=n;i++)
+       {
+            for(int j=1+i;j<=n;j++)
+            {
+                 if((i&j)>a && (i&j)<k)
+                 {
+                      a=i&j;
+                 }
+                 if((i|j)>o && (i|j)<k)
+                 {
+                       o=i|j;
+                 }
+                 if((i^j)>x && (i^j)<k)
+                 {
+                       x=i^j;
+                 }
             }
         }
-    }
-
-    printf("Maximum AND less than %d: %d\n", k, a);
-    printf("Maximum OR  less than %d: %d\n", k, o);
-    printf("Maximum XOR less than %d: %d\n", k, x);
+        printf("%d\n%d\n%d\n",a,o,x);
 }
-
-int main() {
-    int n, k;
-
-    printf("Enter two integers (n and k): ");
-    scanf("%d %d", &n, &k);
-
-    calculate_the_max(n, k);
-
-    return 0;
+int main()
+{
+     int n,k; 
+     scanf("%d%d",&n,&k); 
+     calculate_the_max(n,k);
 }
 ```
 
 Output:
 
-![444627432-9a6dee82-7b60-4f61-a677-c0ccdbc29402](https://github.com/user-attachments/assets/eaa9c534-5284-4f1e-af50-08616d9374d1)
+![445010521-314376a3-9f61-4cbd-8148-1711a3f4d53c](https://github.com/user-attachments/assets/5852ddc9-6e64-4b46-aeb0-05fa8152a40e)
+
 
 
 Result:
@@ -140,66 +132,45 @@ Algorithm:
 Program:
 
 ```
-#include <stdio.h>
-#include <stdlib.h>
-
-#define MAX_SHELVES 1000
-
-int main() {
-    int noshel, noque;
-    printf("Enter number of shelves and number of queries: ");
-    scanf("%d %d", &noshel, &noque);
-
-    int *nobookarr = (int *)calloc(noshel, sizeof(int));
-
-    int **shelarr = (int **)malloc(noshel * sizeof(int *));
-    for (int i = 0; i < noshel; i++) {
-        shelarr[i] = (int *)malloc(1100 * sizeof(int)); 
+#include<stdio.h>
+int main()
+{
+     int noshel,noque; 
+     scanf("%d%d",&noshel,&noque); 
+     int shelarr[noshel][noshel];
+     int nobookarr[noshel]; 
+     int k=0,c=0;
+     for(int i=0;i<noque;i++)
+     {
+          int queno; scanf("%d",&queno); 
+          if(queno==1)
+           {
+                int shelno,nopage; 
+                scanf("%d%d",&shelno,&nopage); 
+                shelarr[shelno][k]=nopage; 
+                nobookarr[shelno]=c+=1;
+                k=k+1;
+           }
+           else if(queno==2)
+           {
+                int pshelno,pbookno; 
+                scanf("%d%d",&pshelno,&pbookno); 
+                printf("%d",shelarr[pshelno][pbookno]);
+           }
+           else if(queno==3)
+           {
+                int ppshelno; 
+                scanf("%d",&ppshelno); 
+                printf("%d",nobookarr[ppshelno]);
+           }
     }
-
-    for (int i = 0; i < noque; i++) {
-        int type;
-        printf("\nEnter query type (1:Add, 2:Print Book, 3:Print Count): ");
-        scanf("%d", &type);
-
-        if (type == 1) {
-            int x, y;
-            printf("Enter shelf index and book pages to add: ");
-            scanf("%d %d", &x, &y);
-            shelarr[x][nobookarr[x]] = y;
-            nobookarr[x]++;
-        } else if (type == 2) {
-            int x, y;
-            printf("Enter shelf index and book index: ");
-            scanf("%d %d", &x, &y);
-            if (y < nobookarr[x])
-                printf("Book at shelf %d, index %d has %d pages\n", x, y, shelarr[x][y]);
-            else
-                printf("Invalid book index.\n");
-        } else if (type == 3) {
-            int x;
-            printf("Enter shelf index to count books: ");
-            scanf("%d", &x);
-            printf("Shelf %d has %d books\n", x, nobookarr[x]);
-        } else {
-            printf("Invalid query type.\n");
-        }
-    }
-
-    for (int i = 0; i < noshel; i++) {
-        free(shelarr[i]);
-    }
-    free(shelarr);
-    free(nobookarr);
-
-    return 0;
 }
-
 ```
 
 Output:
 
-![444627540-e556fc9d-701c-4e78-9bec-d1ce1862d34b](https://github.com/user-attachments/assets/acb0bc60-93fa-4fe5-90cf-14c954b8afc7)
+
+![445013271-678bd491-82a7-4b23-8f35-89bade3719bd](https://github.com/user-attachments/assets/7a6f8f8b-47d2-4cd3-a36b-b41c0c0e3c08)
 
 
 
@@ -228,30 +199,27 @@ Algorithm:
 Program:
 
 ```
-#include <stdio.h>
-
-int main() {
-    int n;
+#include<stdio.h> 
+int main()
+{
+    int n; 
     scanf("%d",&n);
     int a[n];
-
-    int sum = 0;
-
-    for (int i = 0; i < n; i++) {
-        scanf("%d", &a[i]);
-        sum += a[i]; 
+    int sum=0;
+    for(int i=0;i<n;i++)
+    {
+         scanf("%d",&a[i]); 
+         sum=sum+a[i];
     }
-    printf("The sum of the integers is: %d\n", sum);
-
-    return 0;
+    printf("%d",sum);
 }
-
 ```
 
 Output:
 
+![445014351-8ba7f552-dea5-4337-a7cd-869a9e13b1bc](https://github.com/user-attachments/assets/f8eee1a7-e704-421f-a125-40f854d11f58)
 
-![444627641-56dead40-8e49-4bf2-8ce2-0f449e1cc46e](https://github.com/user-attachments/assets/dad95234-6bd1-4275-bc60-8f449643ef99)
+
 
 
 
@@ -283,40 +251,27 @@ o	If a character is not a space, it may belong to a word. If it's the first non-
 Program:
 
 ```
-#include <stdio.h>
-#include <string.h>
-#include <ctype.h>
-
-int main() {
-    char sentence[1000];
-    int i = 0, word_count = 0;
-    int in_word = 0;
-
-    printf("sentence: ");
-    fgets(sentence, sizeof(sentence), stdin);
-
-    while (sentence[i] != '\0') {
-        if (!isspace(sentence[i]) && !ispunct(sentence[i])) {
-            if (in_word == 0) {
-                word_count++;
-                in_word = 1; 
-            }
-        } else {
-            in_word = 0;
-        }
-        i++;
-    }
-    printf("Number of words: %d\n", word_count);
-
-    return 0;
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+     char str[100];
+     fgets(str,sizeof(str),stdin);
+     int len=sizeof(str);
+     int count=1;
+     for(int i=0;i<len-1;i++){
+     if(str[i]==' ')
+     count++;                         
+     }
+printf("Total number of words in the string is :%d",count);
+return 0;
 }
-
 ```
 
 Output:
 
+![445016333-89bf17b3-ec10-40db-94df-247f81d66d18](https://github.com/user-attachments/assets/473c6f78-2a65-4e91-842c-860ecd3a8956)
 
-![444627831-bb2aca74-02f1-4c31-a972-771780c4aba1](https://github.com/user-attachments/assets/67dbb51c-7a7a-4ad6-9274-bf54fa090a2c)
 
 
 
