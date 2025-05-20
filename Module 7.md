@@ -24,11 +24,13 @@ Program:
 #include<stdio.h> 
 struct eligible
 {
-int age; char n[4];
+int age;
+char n[4];
 };
 int main()
 {
-struct eligible; scanf("%d%s",&e.age,e.n);
+struct eligible;
+scanf("%d%s",&e.age,e.n);
 if(e.age<=6)
 {
 printf("Age:%d\nName:%svaccine:%d\neligibility:no",e.age,e.n,e.age);
